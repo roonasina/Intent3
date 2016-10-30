@@ -13,19 +13,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.imageViewSMS)
+        findViewById(R.id.imageViewBrowser)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        composeSmsMessage("Pesan dari SMK Telkom Malang");
+                        openWebPage("http://www.smktelkom-mlg.sch.id/");
                     }
                 });
     }
 
-            public void composeSmsMessage(String message) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain" );
-                intent.putExtra("sms_body", message);
+            public void openWebPage(String url) {
+                Uri webpage = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
                 if (intent.resolveActivity(getPackageManager()) != null)
                     startActivity(intent);
             }
